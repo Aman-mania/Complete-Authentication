@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Auth App</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-logo">Auth App</div>
+    <ul class="navbar-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about-section">About</a></li>
+      <li><a href="#register">Register</a></li>
+      <li><a href="#login">Login</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div class="container">
+
+    <!-- HOME SECTION -->
+    <section class="section hidden" id="home-section">
+      <div class="home-intro">
+        <h2>Welcome to Auth App</h2>
+          <p class="subtitle">
+            Welcome to Auth App! Experience a secure and user-friendly way to manage your account. Simply register to get started, or log in if you already have an account.
+          </p>
+          <h2>Get Started</h2>
+          <p>Login/Register using email and get access to your own personalized Dashboard.
+          </p>
+        <div class="home-buttons">
+          <a href="#register" class="btn">Register</a>
+          <a href="#login" class="btn btn-outline">Login</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- REGISTER SECTION -->
+    <section class="section hidden" id="register-section">
+      <h2>Register</h2>
+      <form id="registerForm">
+        <input type="text" id="regName" placeholder="Name" required />
+        <input type="email" id="regEmail" placeholder="Email" required />
+        <input type="password" id="regPass" placeholder="Password" required />
+        <input type="password" id="regPassCnf" placeholder="Confirm Password" required />
+        <label><input type="checkbox" id="regTC" />Agree to Terms & Conditions</label>
+        <button type="submit">Register</button>
+      </form>
+      <div class="message" id="regMessage"></div>
+      <p class="toggle-link">
+        Already have an account? <a href="#login">Login here</a>
+      </p>
+    </section>
+
+    <!-- LOGIN SECTION -->
+    <section class="section hidden" id="login-section">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <input type="email" id="loginEmail" placeholder="Email" required />
+        <input type="password" id="loginPass" placeholder="Password" required />
+        <button type="submit">Login</button>
+      </form>
+      <div class="message" id="loginMessage"></div>
+      <p class="toggle-link">
+        Don’t have an account? <a href="#register">Register here</a>
+      </p>
+    </section>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="footer-section">
+    <div class="footer-container">
+      <ul class="footer-list">
+        <!-- ABOUT -->
+        <li class="footer-about" id="about-section">
+          <h2>About</h2>
+          <p>
+            This project is made in correspondence to an assignment given by eTechnoLab.
+            My main objective was to build an authentication API (Using JWT) which can
+            be linked to any existing frontend. This promotes reusability and code optimization.
+          </p>
+          <p>
+            Check the project on
+            <a href="https://github.com/Aman-mania/Complete-Authentication" target="_blank" rel="noopener noreferrer">
+              Github
+            </a>
+          </p>
+        </li>
+        <!-- CONTACT -->
+        <li class="footer-contact" id="contact-section">
+          <h2>Contact</h2>
+          <p>
+            Dev: Aman Biswakarma<br>
+            Ph: +917849067915<br>
+            <a href="https://github.com/Aman-mania" target="_blank" rel="noopener noreferrer">
+              Github
+            </a>
+          </p>
+          <p class="footer-copy">&copy; 2025 Auth App</p>
+        </li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

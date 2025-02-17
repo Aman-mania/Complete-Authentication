@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Auth App - Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1>Dashboard</h1>
+
+  <section class="form-section">
+    <button id="getUserBtn">Get Logged-In User Info</button>
+    <div class="message" id="userInfo"></div>
+  </section>
+
+  <section class="form-section">
+    <h2>Change Password</h2>
+    <form id="changePassForm">
+      <input type="password" id="newPass" placeholder="New Password" required />
+      <input type="password" id="newPassCnf" placeholder="Confirm New Password" required />
+      <button type="submit">Change Password</button>
+    </form>
+    <div class="message" id="changePassMessage"></div>
+  </section>
+
+  <section class="form-section">
+    <button id="logoutBtn">Logout</button>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
