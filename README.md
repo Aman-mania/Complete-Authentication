@@ -1,6 +1,7 @@
-# UserAuth-JWT API
+# Complete-Authentication-API
 
 A secure authentication system built with Express and JSON Web Tokens (JWT) to provide robust user verification and role-based access control. This API streamlines user registration and login processes, ensuring scalability and data integrity with MongoDB.
+It also includes complete frontend which can be integrated to any existing web application.
 
 ## Overview
 
