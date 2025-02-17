@@ -1,5 +1,5 @@
-import UserModel from '../models/user.js'
-import transporter from '../config/email.js'
+import { UserModel, ContactModel } from "../models/user.js";
+// import transporter from '../config/email.js'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
@@ -82,6 +82,44 @@ class UserController{
         }
     }
 
+
+    static submitContactForm = async (req, res) => {
+        try {
+          console.log('Contact request body:', req.body);
+          console.log('Authorized user:', req.user); // Check if you see user._id
+      
+          const { name, email, phone, message } = req.body;
+          const userId = req.user._id;
+      
+          if (!name || !email || !phone || !message) {
+            return res.send({ status: 'failed', message: 'All fields are required' });
+          }
+      
+          const contact = new ContactModel({ name, email, phone, message, userId });
+          const savedContact = await contact.save();
+          console.log('Saved contact:', savedContact);
+      
+          res.send({ status: 'success', message: 'Message sent successfully' });
+        } catch (error) {
+          console.error('Error submitting contact form:', error);
+          res.send({ status: 'failed', message: 'Failed to submit message' });
+        }
+      };
+      
+      // 🔹 Retrieve User Contact Messages
+    static getUserContacts = async (req, res) => {
+        try {
+            const userId = req.user._id;  // Get user ID from auth middleware
+            const contacts = await ContactModel.find({ userId }).sort({ createdAt: -1 });
+            res.send({ "status": "success", "contacts": contacts });
+
+        } catch (error) {
+            console.error("Error retrieving contact messages:", error);
+            res.send({ "status": "failed", "message": "Unable to retrieve contact messages" });
+        }
+    }
+
+
     static changePass = async(req,res)=>{
         const {pass,pass_cnf}=req.body
         if(pass && pass_cnf)
@@ -108,66 +146,6 @@ class UserController{
     static loggedUser =async(req,res)=>{
         res.send({"user":req.user})
     }
-
-    static passReset = async(req,res)=>{
-         const {email}= req.body
-         if(email)
-         {
-            const user= await UserModel.findOne({email: email})
-            if(user) {
-                const secret = user._id + process.env.JWT_SECRET
-                const token=jwt.sign({userID: user._id},secret,{expiresIn:'15m'})
-                const link =`http://127.0.0.1.3000/api/user/reset/${user._id}/${token}`
-                console.log(link)
-
-                let info = await transporter.sendMail({
-                    from:process.env.EMAIL_FROM,
-                    to: user.email,
-                    subject: "RizzBlog - password reset link",
-                    html: `<a href =${link}> Click Here</a> to reset your password`
-                })
-                res.send({"status":"Success", "message":"Password reset mail sent successfully","info":info})
-            }
-            else{
-                res.send({"status":"failed", "message":"Email doesn't exist"})
-            }
-         }
-         else
-         {
-            res.send({"status":"failed", "message":"Email field is required"})
-         }
-    }
-    static userPassReset = async(req,res)=>{
-        const {pass,pass_cnf}=req.body
-        const {id,token} = req.params
-        const user= await UserModel.findById(id)
-        const new_secret = user._id + process.env.JWT_SECRET
-        try{
-            jwt.verify(token,new_secret)
-            if(pass && pass_cnf)
-            {
-                if(pass!==pass_cnf)
-                {
-                    res.send({"status":"failed", "message":"Incorrect password"})
-                }
-                else{
-                    const salt = await bcrypt.genSalt(10)
-                    const hashPass= await bcrypt.hash(pass,salt)
-                    await UserModel.findByIdAndUpdate(user._id, { $set: {
-                        pass: hashPass}})
-                    res.send({"status":"Success","message":"Password reset successfully"})
-                    }
-            }
-            else{
-                res.send({"status":"failed", "message":"All fields are required"})
-            }
-        }
-        catch(error)
-        {
-            res.send({"status":"failed", "message":"Invalid Token"})
-        }
-    }
-
 
 }
 

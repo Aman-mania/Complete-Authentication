@@ -14,9 +14,9 @@
   font-family: Arial, sans-serif;
 }
 body {
-  display: flex;            /* For sticky footer behavior */
+  display: flex;
   flex-direction: column;
-  min-height: 100vh;        /* Full viewport height */
+  min-height: 100vh;
   background: var(--light-bg);
   color: var(--text-color);
 }
@@ -51,13 +51,13 @@ body {
 
 /* MAIN CONTAINER */
 .container {
-  flex: 1;                 /* Fills remaining space so footer stays at bottom */
+  flex: 1;
   max-width: 600px;
   width: 90%;
   margin: 2rem auto;
 }
 
-/* SECTIONS */
+/* SECTIONS (Index) */
 .section {
   background: var(--white);
   margin: 1.5rem 0;
@@ -74,10 +74,6 @@ body {
   display: none; 
 }
 
-#hidelink {
-  display: block;
-}
-
 /* FORMS */
 form {
   display: flex;
@@ -86,11 +82,19 @@ form {
 }
 form input[type="text"],
 form input[type="email"],
-form input[type="password"] {
+form input[type="password"],
+form input[type="tel"] {
   padding: 0.8rem;
   border: 1px solid #ccc;
   border-radius: 4px;
   outline: none;
+}
+form textarea {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  resize: vertical;
 }
 form button {
   padding: 0.8rem;
@@ -102,23 +106,22 @@ form button {
   cursor: pointer;
   transition: background 0.3s;
 }
-form button:hover { 
-  background: #16a085; 
+form button:hover {
+  background: #16a085;
 }
 label { 
   display: flex; 
   align-items: center; 
   gap: 0.5rem; 
 }
-
 .message {
   margin-top: 0.5rem;
-  color: #e74c3c; /* default to error color */
+  color: #e74c3c;
   font-weight: bold;
   text-align: center;
 }
 
-/* HOME SECTION */
+/* HOME SECTION (Index) */
 #home-section { text-align: center; }
 .home-intro { margin: 1rem auto; max-width: 500px; }
 .home-intro h2 { font-size: 2rem; margin-bottom: 0.5rem; }
@@ -137,7 +140,9 @@ label {
   font-weight: bold;
   transition: background 0.3s;
 }
-.btn:hover { background: #16a085; }
+.btn:hover { 
+  background: #16a085; 
+}
 .btn-outline {
   background: transparent;
   border: 2px solid var(--secondary-color);
@@ -148,7 +153,7 @@ label {
   color: #fff;
 }
 
-/* FOOTER */
+/* FOOTER (Index) */
 #footer-section {
   background: var(--primary-color);
   color: var(--white);
@@ -181,8 +186,6 @@ label {
   font-size: 0.9rem;
   color: #ccc;
 }
-
-/* RESPONSIVE */
 @media (max-width: 768px) {
   .footer-list {
     flex-direction: column;
@@ -191,25 +194,34 @@ label {
   .footer-contact { text-align: left; }
 }
 
-/* ========================== */
-/* DASHBOARD-SPECIFIC STYLES */
-/* ========================== */
-
-/* User Info Section */
-.user-info-section {
+/* DASHBOARD SPECIFIC STYLES */
+.dashboard-container {
   margin-top: 2rem;
 }
-.user-info {
+.user-info-section {
   background: var(--white);
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-bottom: 1.5rem;
+  text-align: left;
 }
-
-/* Change Password Section */
-#change-password-section {
+.user-info-section h2 {
+  margin-bottom: 1rem;
   text-align: center;
-  margin-top: 2rem;
+}
+.user-info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.user-info-list li {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+.change-pass-toggle {
+  text-align: center;
+  margin-bottom: 1rem;
 }
 #toggleChangePassBtn {
   background: var(--secondary-color);
@@ -225,19 +237,36 @@ label {
 }
 .change-pass-box {
   max-width: 400px;
-  margin: 1rem auto;
+  margin: 0 auto 2rem;
   background: var(--white);
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  text-align: left;
 }
 .change-pass-box h2 {
   text-align: center;
+  margin-bottom: 1rem;
 }
 
-/* (Optional) Highlight the Logout link in navbar differently if desired */
-#logoutBtn {
-  font-weight: bold;
-  /* Add more styling here if you want a unique logout color */
+/* DASHBOARD: CONTACT MESSAGES SECTION */
+.contact-messages-section {
+  background: var(--white);
+  padding: 1rem;
+  margin: 1rem auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.contact-messages-section h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.contact-messages-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.contact-messages-list li {
+  padding: 0.5rem;
+  border-bottom: 1px solid #ccc;
+  font-size: 0.95rem;
 }

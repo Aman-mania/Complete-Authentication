@@ -1,56 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Dashboard - Auth App</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <title>Contact - Auth App</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- NAVBAR (Dashboard) -->
+  <!-- NAVBAR -->
   <nav class="navbar">
     <div class="navbar-logo">Auth App</div>
     <ul class="navbar-links">
-      <!-- Redirects to Index for Home & About -->
       <li><a href="index.html#home">Home</a></li>
       <li><a href="index.html#about-section">About</a></li>
-      <!-- New Contact link added -->
+      <li><a href="dashboard.html">Dashboard</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a id="logoutBtn" href="#">Logout</a></li>
     </ul>
   </nav>
-
-  <!-- DASHBOARD CONTENT -->
-  <div class="dashboard-container container">
-    <h1>Dashboard</h1>
-    
-    <!-- User Info Section (Populated via script.js) -->
-    <div class="user-info-section" id="userInfo">
-      <!-- Systematic user information will appear here -->
-    </div>
-
-    <!-- Change Password Toggle -->
-    <div class="change-pass-toggle">
-      <button id="toggleChangePassBtn" class="btn">Change Password</button>
-    </div>
-
-    <!-- Hidden Change Password Form -->
-    <div id="change-password-section" class="change-pass-box hidden">
-      <h2>Change Password</h2>
-      <form id="changePassForm">
-        <input type="password" id="newPass" placeholder="New Password" required>
-        <input type="password" id="newPassCnf" placeholder="Confirm New Password" required>
+  
+  <!-- MAIN CONTENT -->
+  <div class="container">
+    <section class="section">
+      <h2>Contact Us</h2>
+      <form id="contactForm">
+        <input type="text" id="contactName" placeholder="Name" required>
+        <input type="email" id="contactEmail" placeholder="Email" required>
+        <input type="tel" id="contactPhone" placeholder="Phone Number" required>
+        <textarea id="contactMessage" placeholder="Message" rows="5" required></textarea>
         <button type="submit" class="btn">Submit</button>
       </form>
-      <div class="message" id="changePassMessage"></div>
-    </div>
-
-    <!-- Contact Messages Section -->
-    <div class="contact-messages-section">
-      <h2>Contact Messages</h2>
-      <ul id="contactMessagesList" class="contact-messages-list"></ul>
-    </div>
+      <div class="message" id="contactMessageStatus"></div>
+    </section>
   </div>
-
   <footer id="footer-section">
     <div class="footer-container">
       <ul class="footer-list">
@@ -85,7 +65,7 @@
     </div>
   </footer>
 
-
-  <script src="script.js"></script>
+  
+  <script src="contact.js"></script>
 </body>
 </html>

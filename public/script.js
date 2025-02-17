@@ -1,9 +1,5 @@
-// Adjust BASE_URL to match your server URL
-const BASE_URL = 'http://localhost:3000/api/user';
+const BASE_URL = `${window.location.origin}/api/user`;
 
-// ---------------------
-// 1. Registration Logic
-// ---------------------
 const regForm = document.getElementById('registerForm');
 if (regForm) {
   regForm.addEventListener('submit', async (e) => {
@@ -15,7 +11,6 @@ if (regForm) {
     const tc = document.getElementById('regTC').checked;
     const messageDiv = document.getElementById('regMessage');
 
-    // POST /register
     try {
       const res = await fetch(`${BASE_URL}/register`, {
         method: 'POST',
@@ -25,9 +20,7 @@ if (regForm) {
       const data = await res.json();
       messageDiv.textContent = data.message || '';
       if (data.status === 'success') {
-        // Save token to localStorage
         localStorage.setItem('token', data.token);
-        // Optionally redirect to dashboard
         window.location.href = 'dashboard.html';
       }
     } catch (error) {
@@ -36,9 +29,9 @@ if (regForm) {
   });
 }
 
-// ---------------
-// 2. Login Logic
-// ---------------
+/* ---------------------
+   2. Login Logic
+--------------------- */
 const loginForm = document.getElementById('loginForm');
 if (loginForm) {
   loginForm.addEventListener('submit', async (e) => {
@@ -47,7 +40,6 @@ if (loginForm) {
     const pass = document.getElementById('loginPass').value;
     const messageDiv = document.getElementById('loginMessage');
 
-    // POST /login
     try {
       const res = await fetch(`${BASE_URL}/login`, {
         method: 'POST',
@@ -57,9 +49,7 @@ if (loginForm) {
       const data = await res.json();
       messageDiv.textContent = data.message || '';
       if (data.status === 'success') {
-        // Save token to localStorage
         localStorage.setItem('token', data.token);
-        // Redirect to dashboard
         window.location.href = 'dashboard.html';
       }
     } catch (error) {
@@ -67,43 +57,6 @@ if (loginForm) {
     }
   });
 }
-
-// -----------------------
-// 3. Get Logged-In User
-// -----------------------
-const getUserBtn = document.getElementById('getUserBtn');
-if (getUserBtn) {
-  getUserBtn.addEventListener('click', async () => {
-    const token = localStorage.getItem('token');
-    const userInfoDiv = document.getElementById('userInfo');
-
-    if (!token) {
-      userInfoDiv.textContent = 'No token found. Please login.';
-      return;
-    }
-    try {
-      const res = await fetch(`${BASE_URL}/loggedUser`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'authorization': `Bearer ${token}`
-        }
-      });
-      const data = await res.json();
-      if (data.user) {
-        userInfoDiv.textContent = `User: ${data.user.name} (Email: ${data.user.email})`;
-      } else {
-        userInfoDiv.textContent = data.message || 'Unable to get user.';
-      }
-    } catch (error) {
-      userInfoDiv.textContent = 'Error: ' + error;
-    }
-  });
-}
-
-// --------------------
-// 4. Change Password
-// --------------------
 const changePassForm = document.getElementById('changePassForm');
 if (changePassForm) {
   changePassForm.addEventListener('submit', async (e) => {
@@ -112,7 +65,6 @@ if (changePassForm) {
     const pass_cnf = document.getElementById('newPassCnf').value;
     const messageDiv = document.getElementById('changePassMessage');
     const token = localStorage.getItem('token');
-
     if (!token) {
       messageDiv.textContent = 'No token found. Please login.';
       return;
@@ -134,9 +86,9 @@ if (changePassForm) {
   });
 }
 
-// -----------
-// 5. Logout
-// -----------
+/* -----------
+   5. Logout Logic
+----------- */
 const logoutBtn = document.getElementById('logoutBtn');
 if (logoutBtn) {
   logoutBtn.addEventListener('click', () => {
@@ -144,91 +96,97 @@ if (logoutBtn) {
     window.location.href = 'index.html';
   });
 }
-
-// -----------------------
-// 6. Forgot Password
-// -----------------------
-const forgotPassForm = document.getElementById('forgotPassForm');
-if (forgotPassForm) {
-  forgotPassForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = document.getElementById('forgotEmail').value;
-    const messageDiv = document.getElementById('forgotPassMessage');
-
-    try {
-      const res = await fetch(`${BASE_URL}/pass-reset`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email })
-      });
-      const data = await res.json();
-      messageDiv.textContent = data.message || '';
-    } catch (error) {
-      messageDiv.textContent = 'Error: ' + error;
+  //  Navigation Toggling for Index Page
+document.addEventListener('DOMContentLoaded', function() {
+  if (document.querySelector('.section')) {
+    function showSection() {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => section.classList.add('hidden'));
+      let hash = window.location.hash;
+      if (hash === '#register') {
+        document.getElementById('register-section').classList.remove('hidden');
+      } else if (hash === '#login') {
+        document.getElementById('login-section').classList.remove('hidden');
+      } else {
+        document.getElementById('home-section').classList.remove('hidden');
+      }
     }
-  });
-}
+    window.addEventListener('hashchange', showSection);
+    showSection();
+  }
+});
 
-// ------------------------
-// 7. Reset Password
-// ------------------------
-const resetPassForm = document.getElementById('resetPassForm');
-if (resetPassForm) {
-  // Parse URL params (id & token)
-  const urlParams = new URLSearchParams(window.location.search);
-  const userId = urlParams.get('id');
-  const userToken = urlParams.get('token');
-
-  resetPassForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const pass = document.getElementById('resetPass').value;
-    const pass_cnf = document.getElementById('resetPassCnf').value;
-    const messageDiv = document.getElementById('resetPassMessage');
-
-    if (!userId || !userToken) {
-      messageDiv.textContent = 'Invalid password reset link.';
+document.addEventListener('DOMContentLoaded', function() {
+  const userInfoDiv = document.getElementById("userInfo");
+  if (userInfoDiv) {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      userInfoDiv.textContent = "No token found. Please login.";
       return;
     }
-
-    try {
-      const res = await fetch(`${BASE_URL}/reset-pass/${userId}/${userToken}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ pass, pass_cnf })
+    fetch(`${BASE_URL}/loggedUser`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "authorization": `Bearer ${token}`
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.user) {
+          userInfoDiv.innerHTML = `
+            <h2>User Information</h2>
+            <ul class="user-info-list">
+              <li><strong>Name:</strong> ${data.user.name}</li>
+              <li><strong>Email:</strong> ${data.user.email}</li>
+            </ul>
+          `;
+        } else {
+          userInfoDiv.textContent = data.message || "Unable to get user info.";
+        }
+      })
+      .catch(err => {
+        userInfoDiv.textContent = "Error: " + err;
       });
-      const data = await res.json();
-      messageDiv.textContent = data.message || '';
-    } catch (error) {
-      messageDiv.textContent = 'Error: ' + error;
-    }
-  });
-}
 
-/* --- Navigation Section Toggling ---
-   This code listens for hash changes (from navbar links)
-   and displays the appropriate section while hiding the others.
-   It does not interfere with your backend logic.
-*/
-document.addEventListener('DOMContentLoaded', function() {
-  function showSection() {
-    // Hide all sections
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(section => section.classList.add('hidden'));
-
-    // Determine which section to show based on the hash
-    let hash = window.location.hash;
-    if (hash === '#register') {
-      document.getElementById('register-section').classList.remove('hidden');
-    } else if (hash === '#login') {
-      document.getElementById('login-section').classList.remove('hidden');
-    } else {
-      // Default to home section if hash is '#home' or empty/unknown
-      document.getElementById('home-section').classList.remove('hidden');
+    const toggleBtn = document.getElementById("toggleChangePassBtn");
+    const changePassSection = document.getElementById("change-password-section");
+    if (toggleBtn && changePassSection) {
+      toggleBtn.addEventListener("click", function() {
+        changePassSection.classList.toggle("hidden");
+      });
     }
   }
-
-  // Run when the hash changes
-  window.addEventListener('hashchange', showSection);
-  // Run once on initial page load
-  showSection();
+const contactMessagesList = document.getElementById("contactMessagesList");
+if (contactMessagesList) {
+  const token = localStorage.getItem("token");  // Retrieve JWT token
+  fetch("http://localhost:3000/api/user/contacts", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "authorization": `Bearer ${token}` // Add Bearer token here
+    }
+  })
+    .then(res => res.json())
+    .then(data => {
+      // The controller sends back { status: 'success', contacts: [...] }
+      if (data.contacts && data.contacts.length > 0) {
+        let html = "";
+        data.contacts.forEach(msg => {
+          html += `<li>
+            <strong>Name:</strong> ${msg.name} <br>
+            <strong>Email:</strong> ${msg.email} <br>
+            <strong>Phone:</strong> ${msg.phone} <br>
+            <strong>Message:</strong> ${msg.message}
+          </li>`;
+        });
+        contactMessagesList.innerHTML = html;
+      } else {
+        contactMessagesList.innerHTML = "<li>No contact messages found.</li>";
+      }
+    })
+    .catch(err => {
+      contactMessagesList.innerHTML = `<li>Error fetching messages: ${err}</li>`;
+    });
+}
 });
