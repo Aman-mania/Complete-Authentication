@@ -7,20 +7,20 @@ A complete web application built with the MERN stack (MongoDB, Express.js, React
 JWT_AUTH_System is designed as a full-stack web application to provide a user-friendly authentication mechanism. Users can register, log in, and access protected areas based on their roles. The frontend, built with React.js, offers a smooth UI, while the backend, powered by Node.js and Express.js, ensures secure authentication and database management using MongoDB.
 
 **HOME PAGE**
-![image](https://github.com/user-attachments/assets/885dd425-5f39-4797-9177-c8c470afa960)
+![image](https://github.com/user-attachments/assets/2fe0d865-9379-4be5-b39a-26a96234c1eb)
 
 **Register / Login**
-![image](https://github.com/user-attachments/assets/d010a3be-cbaf-40d1-8b27-05ee0c06bf66)
-![image](https://github.com/user-attachments/assets/cc89d79c-5617-40c1-a719-1c0e7117bc73)
+![image](https://github.com/user-attachments/assets/e420e23c-f56d-40fd-b195-9ccc7095ea33)
+![image](https://github.com/user-attachments/assets/001cb754-d82d-41b7-a1c6-7ac103fa6b89)
 
 **Dashboard (Authenticated User)**
-![image](https://github.com/user-attachments/assets/8a16b0e3-d871-42ef-ab3e-b26ba4475ae7)
+![image](https://github.com/user-attachments/assets/93c3a584-936e-4563-869f-b17c1899bd19)
 
 **Change Password (Authenticated User)**
-![image](https://github.com/user-attachments/assets/7602fd0b-4708-46aa-af99-8eda8b1ee236)
+![image](https://github.com/user-attachments/assets/4fe7cc7b-a397-402e-8ace-5996d72c8b11)
 
 **Contact (Report Messages)**
-![image](https://github.com/user-attachments/assets/f1463395-23aa-430d-b829-1dedfee7f20d)
+![image](https://github.com/user-attachments/assets/bf8d6592-33f3-4e00-8485-0b7523dd32ca)
 
 ## Features
 
