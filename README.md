@@ -33,13 +33,6 @@ JWT_AUTH_System is designed as a full-stack web application to provide a user-fr
 
 ## Tech Stack
 
-### Frontend
-- **Framework:** React.js
-- **State Management:** Context API / Redux (optional)
-- **Styling:** Tailwind CSS / Material-UI
-- **API Requests:** Axios
-
-### Backend
 - **Framework:** Node.js, Express.js
 - **Authentication:** JSON Web Tokens (JWT)
 - **Database:** MongoDB (Atlas)
