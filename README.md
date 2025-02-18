@@ -1,13 +1,6 @@
-<<<<<<< HEAD
-# Complete-Authentication-API
-
-A secure authentication system built with Express and JSON Web Tokens (JWT) to provide robust user verification and role-based access control. This API streamlines user registration and login processes, ensuring scalability and data integrity with MongoDB.
-It also includes complete frontend which can be integrated to any existing web application.
-=======
 # JWT_AUTH_System - Full Stack Web Application
 
 A complete web application built with the MERN stack (MongoDB, Express.js, React.js, Node.js) that provides secure authentication using JSON Web Tokens (JWT). This system ensures robust user verification, role-based access control, and a responsive frontend for seamless user experience.
->>>>>>> 8982299 (Latest)
 
 ## Overview
 
