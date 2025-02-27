@@ -1,10 +1,10 @@
 # JWT_AUTH_System - Full Stack Web Application
 
-A complete web application built with the MERN stack (MongoDB, Express.js, React.js, Node.js) that provides secure authentication using JSON Web Tokens (JWT). This system ensures robust user verification, role-based access control, and a responsive frontend for seamless user experience.
+A complete web application built with the MERN stack (MongoDB, Express.js, Node.js) that provides secure authentication using JSON Web Tokens (JWT). This system ensures robust user verification, role-based access control, and a responsive frontend for seamless user experience.
 
 ## Overview
 
-JWT_AUTH_System is designed as a full-stack web application to provide a user-friendly authentication mechanism. Users can register, log in, and access protected areas based on their roles. The frontend, built with React.js, offers a smooth UI, while the backend, powered by Node.js and Express.js, ensures secure authentication and database management using MongoDB.
+JWT_AUTH_System is designed as a full-stack web application to provide a user-friendly authentication mechanism. Users can register, log in, and access protected areas based on their roles. The frontend, built with HTML,CSS and JS, offers a smooth UI, while the backend, powered by Node.js and Express.js, ensures secure authentication and database management using MongoDB.
 
 **HOME PAGE**
 ![image](https://github.com/user-attachments/assets/2fe0d865-9379-4be5-b39a-26a96234c1eb)
@@ -27,7 +27,7 @@ JWT_AUTH_System is designed as a full-stack web application to provide a user-fr
 - **Secure Authentication:** Implements JWT-based token generation and validation for user login and registration.
 - **Role-Based Access Control:** Differentiates user access based on roles to enhance security.
 - **User Management:** Provides endpoints for user registration, login, and profile management.
-- **Frontend UI:** A modern and responsive React.js-based interface.
+- **Frontend UI:** A modern and responsive HTML/CSS/JS-based interface.
 - **Protected Routes:** Ensures only authorized users can access specific pages and functionalities.
 - **Performance Optimization:** Designed to integrate seamlessly with a scalable MongoDB database.
 
