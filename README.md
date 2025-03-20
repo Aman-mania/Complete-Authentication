@@ -2,6 +2,9 @@
 
 A complete web application built with the MERN stack (MongoDB, Express.js, Node.js) that provides secure authentication using JSON Web Tokens (JWT). This system ensures robust user verification, role-based access control, and a responsive frontend for seamless user experience.
 
+## Deployed on railway
+**Have a look youself: https://complete-authentication-production.up.railway.app/**
+
 ## Overview
 
 JWT_AUTH_System is designed as a full-stack web application to provide a user-friendly authentication mechanism. Users can register, log in, and access protected areas based on their roles. The frontend, built with HTML,CSS and JS, offers a smooth UI, while the backend, powered by Node.js and Express.js, ensures secure authentication and database management using MongoDB.
