@@ -15,9 +15,12 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const port = process.env.PORT;
 const URL = process.env.DATABASE_URL;
+const CURL = process.env.DATABASE_URL;
 
 app.use(cors());
 connectDB(URL);
+connectDB(CURL);
+
 app.use(express.json());
 
 // Mount all routes (users and contacts) on /api/user
